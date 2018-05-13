@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>登录</title>
+
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <style>
+        body{background-color: #f1f2f3}
+        .login{width:100%;}
+        .selectLoginMode{position: relative;margin:30px auto 10px auto;width:60%;height:30px;background-color: #fcfcfc;
+                border-radius: 30px;box-shadow: 0 0 5px #ddd}
+        .selectLoginMode span{position: relative;float: left;width:50%;height:100%;font-size: 12px;color:#888;text-align: center;
+                line-height: 30px;display: block;z-index: 99}
+        .selectLoginMode span:nth-child(1){color:#fff}
+        .selectMode{position: absolute;top:0;left:0;width:50%;height:100%;background-color: #ffb6b6;border-radius: 30px;z-index: 0}
+        .userNameLogin,.identifyCodeMode{position: relative;margin:20px auto;width:80%;}
+        .identifyCodeMode{display: none}
+        .loginName,.loginPass,.code,.loginBut,.loginPhone,.phoneCode,.idenReregisterBut{position: relative;margin:20px auto 0 auto;
+                width:100%;height:50px;background-color: #fcfcfc;border-radius: 50px;overflow: hidden;
+                box-shadow: 0 0 5px #ddd}
+        .loginPass{}
+        .code,.phoneCode{width:60%;margin-left:0}
+        .loginBut{width:50%;text-align: center;line-height: 50px;background-color: #ffb6b6;color:#fff}
+        .loginBut:active{background-color: #ff8c8c}
+        .userNameLogin i,.identifyCodeMode i,.register i{position: absolute;left:15px;top:0;line-height: 50px;color:#666;font-size: 20px}
+        .userNameLogin input,.identifyCodeMode input,.register input{padding:0 15%;width:80%;height:100%;background-color: #fcfcfc;
+                border:none;border-radius: 50px;font-size: 15px}
+        .code input,.phoneCode input{padding:0 26%;width:65%;}
+        .userNameLogin input:focus,.identifyCodeMode input:focus,.register input:focus{border:none;outline: none;background-color: #ffe4e4}
+
+        .sendCode{position: absolute;top:70px;right:0px;width:100px;height:50px;background-color: #fcfcfc;border-radius: 50px;
+                box-shadow: 0 0 5px #ddd;text-align: center;line-height: 50px;color:#888}
+        .register .sendCode{top:330px;right:10%}
+        .register{margin:50px auto 0 auto;width:80%;display: none}
+
+
+
+        #topBar .reregisterBut{position: absolute;right:20px;top:10px;width:40px;height:30px;background-color: #fcfcfc;color:#444;
+                font-size: 12px;text-align: center;line-height: 30px;border-radius: 5px;box-shadow: 0 0 5px #ddd}
+        #topBar .reregisterBut:active{background-color: #ff8c8c}
+    </style>
+</head>
+<body>
+    <div id="topBar">
+        <div class="prePage"><i class="fa fa-angle-left"></i></div>
+        <div class="barTip">登录</div>
+        <span class="reregisterBut">注册</span>
+    </div>
+    <div id="main">
+        <!-- 登录模块开始 -->
+        <div class="login">
+            <!-- 选择登录方式 -->
+            <div class="selectLoginMode" name=".userName">
+                <span class="userName">账号密码登录</span>
+                <span class="idenifyCode">验证码登录</span>
+                <div class="selectMode"></div>
+            </div>
+            <!-- 账号密码登录 -->
+            <div class="userNameLogin">
+                <div class="loginName">
+                    <input type="text" placeholder="账号">
+                    <i class="fa fa-user"></i>
+                </div>
+                <div class="loginPass">
+                    <input type="password" placeholder="密码">
+                    <i class="fa fa-key" aria-hidden="true"></i>
+                </div>
+                <div class="code">
+                    <input type="text" placeholder="右侧验证码">
+                    <i class="fa fa-code" aria-hidden="true"></i>
+                </div>
+                <div class="loginBut">登录</div>
+            </div>
+            <!-- 验证码登录 -->
+            <div class="identifyCodeMode">
+                <div class="loginPhone">
+                    <input type="text" placeholder="手机号">
+                    <i class="fa fa-phone" aria-hidden="true"></i>
+                </div>
+                <div class="phoneCode">
+                    <input type="text" placeholder="手机验证码">
+                    <i class="fa fa-code" aria-hidden="true"></i>
+                </div>
+                <div class="sendCode">发送</div>
+                <div class="loginBut">登录</div>
+            </div>
+        </div>
+        <!-- 登录模块结束 -->
+
+        <!-- 注册模块开始 -->
+        <div class="register">
+            <div class="loginName">
+                <input type="text" placeholder="账号">
+                <i class="fa fa-user"></i>
+            </div>
+            <div class="loginPass">
+                <input type="password" placeholder="密码">
+                <i class="fa fa-key" aria-hidden="true"></i>
+            </div>
+            <div class="loginPass">
+                <input type="password" placeholder="确认密码">
+                <i class="fa fa-key" aria-hidden="true"></i>
+            </div>
+            <div class="loginPhone">
+                <input type="text" placeholder="手机号">
+                <i class="fa fa-phone" aria-hidden="true"></i>
+            </div>
+            <div class="phoneCode">
+                <input type="text" placeholder="手机验证码">
+                <i class="fa fa-code" aria-hidden="true"></i>
+            </div>
+            <div class="sendCode">发送</div>
+            <div class="loginBut">注册</div>
+        </div>
+        <!-- 注册模块结束 -->
+    </div>
+</body>
+<script src="../../js/jquery.js"></script>
+<script src="../../js/jquery.cookie.js"></script>
+<script>
+    $(document).ready(function(){
+        // 点击切换登录方式
+        $(".selectLoginMode span").click(function(){
+            if(!$(this).is($($(this).parent(".selectLoginMode").attr("name")))){
+                var obj = $(this);
+                $($(this).parent(".selectLoginMode").attr("name")).css({"color":"#888"});
+                
+                //console.log(obj.position()['left']);
+                $(".selectMode").stop().animate({
+                    left:(obj.position()['left'] + 'px')
+                },300,function(){
+                    obj.css({"color":"#fff"});
+                    obj.parent(".selectLoginMode").attr("name",("." + obj.attr("class")));
+                });
+
+                if(obj.attr("class") == "userName"){
+                    $(".userNameLogin").css({"display":"block"});
+                    $(".identifyCodeMode").css({"display":"none"});
+                }else if(obj.attr("class") == "idenifyCode"){
+                    $(".userNameLogin").css({"display":"none"});
+                    $(".identifyCodeMode").css({"display":"block"});
+                }
+            }
+        });
+
+        // 登录注册切换
+        var showMode = 'login';
+        $(".reregisterBut").click(function(){
+            if(showMode == 'login'){
+                $('.login').css({"display":"none"});
+                $('.register').css({"display":"block"});
+                showMode = 'register';
+                $(this).text("登录");
+                $(".barTip").text("注册");
+            }else{
+                $('.login').css({"display":"block"});
+                $('.register').css({"display":"none"});
+                showMode = 'login';
+                $(this).text("注册");
+                $(".barTip").text("登录");
+            }
+            
+        });
+
+
+        $(".userNameLogin .loginBut").click(function(){
+            //首先判断验证码
+            //其次判断账号密码规则是否符合要求
+            var code = $(this).parent(".userNameLogin").children(".code").children("input").val();
+            if(code == ''){
+                console.log("验证码为空");
+            }else{
+                login(  $(this).parent(".userNameLogin").children(".loginName").children("input").val(),
+                    $(this).parent(".userNameLogin").children(".loginPass").children("input").val(),
+                    code);
+            }            
+        });
+
+        //登录模块
+        function login(userName,passWord,code = ''){
+            if(code == ''){
+                //手机验证码登录,验证码作为password
+                console.log("手机验证码登录");
+            }else{
+                //账号密码登录
+                $.ajax({
+                    url:'../../../control/entrance.php',
+                    type:'post',
+                    dataType:'json',
+                    data:{
+                        login:'login',
+                        userName:userName,
+                        passWord:passWord,
+                        code:code
+                    },
+                    success:function(data){
+                        if(data[0] == "0"){
+                            console.log("账号密码错误");
+                        }else if(data[0] == "1"){
+                            //从客户端写入cookie
+                            $.cookie('user', data[1], { expires: 7, path: '/' });
+
+                            backIframe();
+                            var parentIframeObj = window.parent.$("#mainWindow");
+                            parentIframeObj.attr("src",parentIframeObj.attr("src"));    //强制刷新父窗口子页面
+                            console.log("登陆成功");
+                            //console.log(data[1]);
+                        }
+                    },
+                    error:function(err){
+                        console.log(err);
+                    }
+                });
+            }
+        }
+
+        //注册模块
+        function register(){
+
+        }
+
+        //点击返回
+        $("#topBar .prePage").click(function(){
+            backIframe();
+        });
+
+        //登录完成，返回
+        function backIframe(){
+            var iframeWidth = window.parent.$("#newWindow").width();
+            window.parent.$("#newWindow").animate({
+                left:iframeWidth
+            },300);
+        }
+
+    });
+</script>
+</html>

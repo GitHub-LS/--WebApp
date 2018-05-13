@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>商品列表</title>
+
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <style>
+        .imgShow{width:100%;height:120px;background-color:#ff7833}
+
+        #moddleBar{width:100%;height:30px;border-bottom:1px solid #f1f2f3}
+        #moddleBar ul{width:100%;height:100%}
+        #moddleBar ul li{list-style: none;float: left;width:33.33%;height:100%;text-align: center;line-height: 30px;font-size:13px}
+
+        .shopList{width:100%;}
+        .shopList ul{width:100%;height:100%}
+        .shopList ul li{width:100%;height:110px;padding:10px 0;border-bottom: 1px solid #f1f2f3;display: flex;flex-direction: row}
+        .shopList ul li .shopImg{margin-left:10px;width:110px;height:110px;background-color: #ffbaba}
+        .shopList ul li .shopImg img{width:100%;height:100%;object-fit: cover}
+        .shopList ul li .shopInfo{flex:1;height:110px;padding:0 10px;overflow: hidden;}  
+        .shopList ul li .shopInfo .shopTitle{width:100%;font-size: 15px;color:#444;text-overflow: ellipsis;white-space: nowrap;
+                        overflow: hidden;display: block}
+        .shopList ul li .shopInfo .shopCard{width:140px;height:30px;margin:5px 0; font-size:13px;
+                        line-height: 30px;color:#ff4466}
+        .shopList ul li .shopInfo .shopCard span{margin-left:0px;padding:2px 5px;color:#fff;background-color: #ff5b79;border-radius: 2px}
+        .shopList ul li .shopInfo .shopPrePrice{color:#777;text-decoration: line-through;font-size:13px}
+        .shopList ul li .shopInfo .shopAftPrice{margin-top:5px;color:#ff4466;font-size: 15px}
+    </style>
+</head>
+<body>
+    <div id="topBar">
+        <a href="../../../index.html"><i class="fa fa-angle-left"></i></a>
+        <div class="barTip">商品列表</div>
+    </div>
+    <div id="main">
+        <div class="imgShow">
+            
+        </div>
+        <div id="moddleBar">
+            <ul>
+                <li>推荐</li>
+                <li>最新</li>
+                <li>销量</li>
+            </ul>
+        </div>
+        <div class="shopList">
+            <ul>
+                <li>
+                    <div class="shopImg"><a href="shopinfo.html" target="_top"><img src="../../images/shopImg/test.jpg" alt=""></a></div>
+                    <div class="shopInfo">
+                        <p class="shopTitle"><a href="shopinfo.html" target="_top">商品名称商品名称商品名称</a></p>
+                        <div class="shopCard"><span>满100减99.99</span></div>
+                        <p class="shopPrePrice">原价：111.00</p>
+                        <p class="shopAftPrice">券后：11.01</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="shopImg"><a href="https://s.click.taobao.com/CKqrxSw" target="_top"><img src="../../images/shopImg/test1.jpg" alt=""></a></div>
+                    <div class="shopInfo">
+                        <p class="shopTitle"><a href="https://s.click.taobao.com/CKqrxSw" target="_top">商品名称商品名称商品名称</a></p>
+                        <div class="shopCard"><span>满100减99.99</span></div>
+                        <p class="shopPrePrice">原价：111.00</p>
+                        <p class="shopAftPrice">券后：11.01</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="shopImg"><img src="../../images/shopImg/test2.jpg" alt=""></div>
+                    <div class="shopInfo">
+                        <p class="shopTitle">商品名称商品名称商品名称</p>
+                        <div class="shopCard">领券<span>满100减99.99</span></div>
+                        <p class="shopPrePrice">原价：111.00</p>
+                        <p class="shopAftPrice">券后：11.01</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="shopImg"><img src="../../images/shopImg/test3.jpg" alt=""></div>
+                    <div class="shopInfo">
+                        <p class="shopTitle">九土日式陶泥煮茶壶提梁手工烧水壶酒精炭炉电陶炉用功夫茶煮水壶</p>
+                        <div class="shopCard">领券<span>满50减30</span></div>
+                        <p class="shopPrePrice">原价：85</p>
+                        <p class="shopAftPrice">券后：55</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+<script src="../../js/jquery.js"></script>
+<script>
+    var shopListName = new Array();
+    shopListName['today'] = "今日精选";
+    shopListName['low_p'] = "白菜价";
+    shopListName['value'] = "值的买";
+
+    $(".barTip").text(shopListName[getPara()]);
+
+    function getPara() {
+        var url = window.location.href;
+        var para = url.substr(url.indexOf("?r=") + 3, 5);
+
+        return para;
+    }
+    //根据不同的URL参数返回不同的数据
+</script>
+</html>
